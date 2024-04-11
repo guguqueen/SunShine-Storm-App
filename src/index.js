@@ -1,13 +1,32 @@
 function refreshWeather(response){
     let temperatureElement = document.querySelector("#temperature");
     let temperature = response.data.temperature.current;
-    let cityElement = document.querySelector("#city");
+    let descriptionElement = document.querySelector("#description");
+    let humidityElement = document.querySelector("#humidity");
+    let windspeedElement = document.querySelector("#windspeed");
+    let timeElement = document.querySelectorAll("#time");
+    let date = new Date (response.data.time * 1000);
+
+    console.log(response.data.condition.description);
+
     cityElement.innerHTML = searchInput.value;
+    timeElement.innerHTML = `${date.getDay()} ${date.getHours()}:${date.getMinutes()}`;
+    descriptionElement.innerHTML = response.data.description.condition;
+    humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+    windspeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+    temperatureElement.innerHTML
     temperatureElement.innerHTML = Math.round(temperature);
+    
 
     
 }
 
+function formatDate { 
+    let day = getDay ();
+    let hours = getHours ();
+    let minutes = getMinUtes ();
+        return "Tuesday 18:48";
+}
 
 function searchCity (city){
     // make the api call and update interface
@@ -28,3 +47,4 @@ function handleSearchSubmit(event) {
   
   let searchFormElement = document.querySelector("#search-form");
   searchFormElement.addEventListener("submit", handleSearchSubmit);
+  searchCity("paris")
